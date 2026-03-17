@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Weather Dashboard</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="light-theme">
+    <div class="dashboard-container">
+
+        <!-- Sidebar: Search & History -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fa-solid fa-cloud-sun"></i> WeatherDash</h2>
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+
+            <div class="search-section">
+                <form id="search-form">
+                    <div class="input-group">
+                        <i class="fa-solid fa-location-dot search-icon"></i>
+                        <input type="text" id="city-input" placeholder="Search for a city..." autocomplete="off"
+                            required>
+                        <button type="submit" class="search-btn">Search</button>
+                    </div>
+                </form>
+                <div id="error-message" class="error-msg hidden">City not found. Please try again.</div>
+            </div>
+
+            <div class="history-section">
+                <h3>Recent Searches</h3>
+                <div id="recent-searches" class="recent-list">
+                    <!-- Recent search buttons will be injected here dynamically -->
+                </div>
+                <button id="clear-history-btn" class="clear-btn hidden">Clear History</button>
+            </div>
+        </aside>
+
+        <!-- Main Content: Weather Data -->
+        <main class="main-content">
+
+            <!-- Loading State -->
+            <div id="loading-spinner" class="loader-container hidden">
+                <div class="spinner"></div>
+                <p>Fetching weather data...</p>
+            </div>
+
+            <!-- Initial Empty State -->
+            <div id="empty-state" class="empty-state">
+                <img src="https://illustrations.popsy.co/amber/freelancer.svg" alt="Search Illustration"
+                    class="empty-img">
+                <h2>Welcome to Smart Weather</h2>
+                <p>Enter a city name to get real-time weather and a 5-day forecast.</p>
+            </div>
+
+            <!-- Weather Dashboard (Hidden until populated) -->
+            <div id="weather-dashboard" class="weather-dashboard hidden">
+
+                <!-- Current Weather Section -->
+                <section class="current-weather">
+                    <div class="current-header">
+                        <div>
+                            <h1 id="current-city">--</h1>
+                            <p id="current-date" class="date-text">--</p>
+                        </div>
+                    </div>
+
+                    <div class="current-body">
+                        <div class="temp-container">
+                            <span id="current-temp" class="temperature">--</span>
+                            <span class="unit">°C</span>
+                        </div>
+
+                        <div class="condition-container">
+                            <img id="current-icon" src="" alt="Weather Icon" class="main-icon hidden">
+                            <h3 id="current-condition">--</h3>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <i class="fa-solid fa-droplet"></i>
+                                <div class="metric-info">
+                                    <span class="metric-label">Humidity</span>
+                                    <span id="current-humidity" class="metric-value">--%</span>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <i class="fa-solid fa-wind"></i>
+                                <div class="metric-info">
+                                    <span class="metric-label">Wind Speed</span>
+                                    <span id="current-wind" class="metric-value">-- km/h</span>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <i class="fa-solid fa-temperature-half"></i>
+                                <div class="metric-info">
+                                    <span class="metric-label">Feels Like</span>
+                                    <span id="current-feels-like" class="metric-value">--°C</span>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <i class="fa-solid fa-eye"></i>
+                                <div class="metric-info">
+                                    <span class="metric-label">Visibility</span>
+                                    <span id="current-visibility" class="metric-value">-- km</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5-Day Forecast Section -->
+                <section class="forecast-section">
+                    <div class="section-title">
+                        <h2>3-Day Forecast</h2>
+                    </div>
+                    <div id="forecast-container" class="forecast-grid">
+                        <!-- Forecast cards will be injected here dynamically -->
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
